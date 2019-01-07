@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Lato', sans-serif;
+}
+
+#root {
+  height: inherit;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-text {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.cell:hover {
+  stroke: black;
+}
+
+#tooltip {
+  background-color: rgba(0,0,0,0.7);
+  opacity: 0;
+  width: 150px;
+  height: 90px;
+  padding: 10px;
+  border-radius: 7px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  pointer-events: none;
+}
+
+.tooltip-info {
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.tip-text {
+  font-size: 18px;
+  color: white;
+  margin: 0;
+}
+
+#legend {
+  fill: black;
+  width: 100px;
+  height: 100px;
+}

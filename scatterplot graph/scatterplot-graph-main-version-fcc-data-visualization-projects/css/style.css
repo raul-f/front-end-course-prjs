@@ -1,0 +1,50 @@
+body {
+  height: 100vh;
+  background: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/bicycles.png);
+  font-family: 'Lato',sans-serif;
+}
+
+#tooltip {
+  min-width: 100px;
+  height: 60px;
+  background-color: rgba(206, 212, 218, 0.8);
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#tooltip-title {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+#tooltip-value {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+#tooltip-doping {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+#title {
+  font-size: 35px;
+}
+
+#chart-bg {
+  height: 750px;
+  width: 1000px;
+  box-shadow: 0 0 15px 3px black;
+}

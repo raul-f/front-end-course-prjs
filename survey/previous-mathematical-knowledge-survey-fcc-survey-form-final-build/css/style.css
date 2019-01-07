@@ -1,0 +1,499 @@
+body {
+  background: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/Adv+Math+Pattern+-+take+one.png);
+  background-color: rgb(200,200,200);
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "leftbar header rightbar"
+    "leftbar form-page rightbar"
+    "leftbar footer rightbar";
+    grid-template-rows: 20vh 1fr 10vh;
+    grid-template-columns: 20vw 60vw 20vw;
+}
+
+#leftbar {
+  grid-area: leftbar;
+}
+#rightbar {
+  grid-area: rightbar;
+}
+
+#header {
+  text-align: center;
+  font-family: Rubik, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: header;
+}
+
+#title {
+  background-color: white;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+main {
+  font-family: "Open Sans", monospace;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  background-color: rgba(255,255,255,0.92);
+  grid-area: form-page;  
+}
+
+#survey-form {
+  min-height: 130vh;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  grid-area: form;
+  display: grid;
+  grid-template-areas: 
+    "description description"
+    "name-text name-field"
+    "email-text email-field"
+    "number-text number-field"
+    "dropdown-text dropdown-field"
+    "radio-text-1 radio-field-1"
+    "radio-text-2 radio-field-2"
+    "checkbox-text checkbox-field"
+    "textarea-text textarea-field"
+    "submit submit";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr 1fr 1fr 1fr 3fr 3fr 3fr 2fr 1fr;
+}
+
+#description-container {
+  text-align: center;
+  grid-area: description;
+  min-width: 100px;
+  max-width: 50vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#description {
+  min-width: 100px;
+  max-width: 50vw;
+}
+
+#name-label {
+  grid-area: name-text;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#name-container {
+  grid-area: name-field;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#name {
+  position: relative;
+  left: 10px;
+  width: 60%;
+  height: 40%;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+}
+
+#email-label {
+  grid-area: email-text;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#email-container {
+  grid-area: email-field;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#email {
+  position: relative;
+  left: 10px;
+  width: 60%;
+  height: 40%;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+}
+
+#number-label {
+  grid-area: number-text;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#number-container {
+  grid-area: number-field;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#number {
+  position: relative;
+  left: 10px;
+  width: 60%;
+  height: 40%;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+}
+
+#dropdown-label {
+  text-align: right;
+  grid-area: dropdown-text;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#dropdown-container {
+  grid-area: dropdown-field;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#dropdown {
+  max-width: 25vw;
+  position: relative;
+  left: 10px;
+  width: 60%;
+  height: 40%;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+}
+
+#radio-label-1 {
+  text-align: right;
+  grid-area: radio-text-1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0 0 0 10px;
+}
+
+#radio-set-1 {
+  grid-area: radio-field-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#radio-label-2 {
+  text-align: right;
+  grid-area: radio-text-2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0 0 0 10px;
+}
+
+#radio-set-2 {
+  grid-area: radio-field-2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#option-1p-container, #option-2p-container, #option-3p-container, #option-3p-container, #option-4p-container, #option-5p-container {
+  position: relative;
+  left: 10px;
+}
+
+#option-1a-container, #option-2a-container, #option-3a-container, #option-3a-container, #option-4a-container, #option-5a-container {
+  position: relative;
+  left: 10px;
+}
+
+#checkbox-label {
+  text-align: right;
+  grid-area: checkbox-text;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0 0 0 10px;
+}
+
+#checkbox-set {
+  grid-area: checkbox-field;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#option-i-container, #option-ii-container, #option-iii-container, #option-iv-container, #option-v-container, #option-vi-container, #option-vii-container,#option-viii-container, #option-ix-container {
+  position: relative;
+  left: 20px;
+  top: 0px;
+} 
+
+#textarea-label {
+  grid-area: textarea-text;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#textarea-container {
+  grid-area: textarea-field;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+textarea {
+  position: relative;
+  left: 10px;
+  width: 60%;
+  height: 35%;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+}
+
+#submit-field {
+  grid-area: submit;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#submit {
+  background-color: rgb(60,160,255);
+  width: 85px;
+  height: 45px;
+  border-style: hidden;
+  border-radius: 6px;
+  color: white;
+  font-family: Rubik;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+#submit:hover {
+  cursor: pointer;
+}
+
+footer {
+  grid-area: footer;
+}
+
+@media (max-width:1100px) {
+  #survey-form {
+    font-size: 14px;
+  }
+}
+
+@media (max-width:900px) {
+  body{
+    grid-template-columns: 5vw 90vw 5vw;
+    grid-template-rows: 30vh 1fr 30vh;
+    background-color: rgb(12,102,76);
+  }
+  #survey-form {
+    grid-template-areas: 
+      "description"
+      "name-text"
+      "name-field"
+      "email-text"
+      "email-field"
+      "number-text"
+      "number-field"
+      "dropdown-text"
+      "dropdown-field"
+      "radio-text-1" 
+      "radio-field-1"
+      "radio-text-2"
+      "radio-field-2"
+      "checkbox-text"
+      "checkbox-field"
+      "textarea-text"
+      "textarea-field"
+      "submit";
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 0.3fr 1fr 0.3fr 1fr 0.3fr 1fr 0.5fr 1fr 0.8fr 2fr 0.8fr 2fr 1fr 3fr 0.5fr 2fr 1fr;
+    font-size: 15px;
+    /*grid-template-rows: repeat(8,1fr);*/
+  }
+  
+  #description {
+    margin: 0;
+  }
+  
+  #name-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #name {
+    position: relative;
+    left: 0px;
+  }
+  
+  #email-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #email-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #email {
+    position: relative;
+    left: 0px;
+  }
+  
+  #number-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #number-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #number {
+    position: relative;
+    left: 0px;
+  }
+  
+  #dropdown-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #dropdown {
+    max-width: 50vw;
+    position: relative;
+    left: 0px;
+  }
+  
+  #radio-label-1 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px 10px 15px;
+  }
+  
+  #radio-set-1 {
+    margin: 0 auto 0 auto;
+  }
+  
+  #radio-label-2 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px 10px 15px;
+  }
+  
+  #radio-set-2 {
+    margin: 0 auto 0 auto;
+  }
+  
+  #option-1p-container, #option-2p-container, #option-3p-container, #option-3p-container, #option-4p-container, #option-5p-container {
+    position: relative;
+    left: 0px;
+  }
+
+  #option-1a-container, #option-2a-container, #option-3a-container, #option-3a-container, #option-4a-container, #option-5a-container {
+    position: relative;
+    left: 0px;
+  }
+  
+  #checkbox-label {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 10px;
+  }
+  
+  #checkbox-set {
+    margin: 0 auto 0 auto;
+  }
+  
+  #option-i-container, #option-ii-container, #option-iii-container, #option-iv-container, #option-v-container, #option-vi-container, #option-vii-container,#option-viii-container, #option-ix-container {
+  position: relative;
+  left: 0px;
+  top: 0px;
+} 
+  
+  #textarea-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0 0 0;
+  }
+  
+  #textarea-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #textarea {
+    position: relative;
+    left: 0px;
+  }
+  
+}
+
+@media (max-width:500px) {
+  #survey-form {
+    font-size: 12px;
+  }
+}

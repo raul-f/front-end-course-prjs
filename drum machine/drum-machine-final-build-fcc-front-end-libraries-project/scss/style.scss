@@ -1,0 +1,129 @@
+.dropdown, .dropdown-toggle, .dropdown-menu {
+  width: 100%;
+}
+
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-item:hover, .dropdown-item:active {
+  color: #343a40;
+  background-color: #adb5bd;
+}
+
+.drum-pad-row {
+  margin: 0;
+  padding: 0;
+  height: 33.34%;
+  width: 100%;
+}
+
+.drum-pad-box {
+  margin: 0;
+  /*border: 2px solid;*/
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drum-pad {
+  border-radius: 10%;
+  margin: 0px;
+  height: 80px;
+  width: 80px;
+  box-shadow: none !important;
+}
+
+#root {
+  padding: 0;
+  /*border: 3px solid red;*/
+  min-height: 100vh;
+}
+
+#dm-container {
+  background: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/fancy-pants.jpg);
+  margin: 0;
+  width: 100%;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#drum-machine {
+  border-radius: 20px;
+  border: 1px solid;
+  width: 700px;
+  height: 400px;
+}
+
+#outer-drum {
+  /*border: 2px solid red;*/
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#drum-set {
+  height: 80%;
+  width: 70%;
+}
+
+#outer-display {
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#inner-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80%;
+  width: 85%;
+}
+
+#dsp-holder {
+  background-color: lightgray;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 75%;
+  width: 100%;
+}
+
+#display {
+  margin: 0;
+}
+
+#power-slider {
+  background-color: black;
+  padding: 4px;
+  width: 60px;
+  height: 34px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#power-slider:hover {
+  cursor: pointer;
+}
+
+#power-button {
+  padding: 0;
+  font-size: 15px;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  box-shadow: none !important;
+}

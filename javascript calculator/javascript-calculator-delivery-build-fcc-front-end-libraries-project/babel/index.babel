@@ -1,0 +1,446 @@
+class Calculator extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.referenceTable = {
+			zero: "0",
+			one: "1",
+			two: "2",
+			three: "3",
+			four: "4",
+			five: "5",
+			six: "6",
+			seven: "7",
+			eight: "8",
+			nine: "9",
+			decimal: ".",
+			add: "+",
+			subtract: "-",
+			multiply: "*",
+			divide: "/",
+			equals: "=",
+			clear: "C",
+			Enter: "="
+		};
+		this.tokenList = [];
+		this.itmStr = "";
+		this.result = 0;
+		this.regExNumber = /[0-9]/;
+		this.regExOperator = /[-+*/]/;
+		this.regExDecimal = /\./;
+		this.regExScope = /[-0-9+*/,]/;
+
+		this.handleClick = this.handleClick.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
+		this.clearMemory = this.clearMemory.bind(this);
+		this.calculateResult = this.calculateResult.bind(this);
+		this.processTL = this.processTL.bind(this);
+
+		this.state = {
+			displayCalculation: "",
+			displayResult: "0",
+			debugJSX: <h2 />
+		};
+	}
+
+	//To-do: set up the adding of elements to the token list and develop calculation method.
+
+	handleClick(event) {
+		let symbol = this.referenceTable[event.target.id];
+		let lastIndex = this.tokenList.length - 1;
+		let leng = this.itmStr.length;
+
+		//first stop: all digits and 0 and '.'
+
+		if (this.regExNumber.test(symbol) && leng < 12) {
+			if (symbol !== "0" && this.itmStr !== "0") {
+				this.itmStr += symbol;
+			} else if (this.itmStr !== "0") {
+				this.itmStr += symbol;
+			} else if (this.itmStr === "0") {
+				this.itmStr = symbol;
+			}
+			this.setState({
+				displayResult: this.itmStr
+			});
+		} else if (symbol === "." && !this.regExDecimal.test(this.itmStr)) {
+			if (this.itmStr === "") {
+				this.itmStr = "0.";
+			} else {
+				this.itmStr += symbol;
+			}
+			this.setState({
+				displayResult: this.itmStr
+			});
+		}
+
+		// second stop: deal with operators
+
+		if (this.regExOperator.test(symbol)) {
+			if (this.tokenList.length === 0 && this.itmStr === "") {
+				console.log("I have used result as props");
+				this.tokenList.push(this.result);
+				this.tokenList.push(symbol);
+			} else if (this.itmStr === "") {
+				this.tokenList[lastIndex] = symbol;
+			} else if (this.itmStr === "0.") {
+				this.tokenList.push("0", symbol);
+				this.itmStr = "";
+			} else {
+				this.tokenList.push(this.itmStr, symbol);
+				this.itmStr = "";
+			}
+		}
+
+		this.setState({
+			displayCalculation: this.tokenList.join(" ")
+		});
+	}
+
+	handleKeyPress(event) {
+		let key = event.key;
+		let lastIndex = this.tokenList.length - 1;
+		let leng = this.itmStr.length;
+
+		if (key === "Enter") {
+			this.calculateResult();
+		} else if (this.regExScope.test(key)) {
+			console.log("Valid key!");
+			if (this.regExNumber.test(key) && leng < 12) {
+				if (key !== "0" && this.itmStr !== "0") {
+					this.itmStr += key;
+				} else if (this.itmStr !== "0") {
+					this.itmStr += key;
+				} else if (this.itmStr === "0") {
+					this.itmStr = key;
+				}
+			} else if (key === "," && !this.regExDecimal.test(this.itmStr)) {
+				if (this.itmStr === "") {
+					this.itmStr = "0.";
+				} else {
+					this.itmStr += key;
+				}
+			}
+
+			this.setState({
+				displayResult: this.itmStr
+			});
+
+			if (this.regExOperator.test(key)) {
+				if (this.tokenList.length === 0 && this.itmStr === "") {
+					console.log("I have used result as props");
+					this.tokenList.push(this.result);
+					console.log("I have pushed the result in and it is " + this.result);
+					this.tokenList.push(key);
+				} else if (this.itmStr === "") {
+					this.tokenList[lastIndex] = key;
+				} else if (this.itmStr === "0.") {
+					this.tokenList.push("0", key);
+					this.itmStr = "";
+				} else {
+					this.tokenList.push(this.itmStr, key);
+					this.itmStr = "";
+				}
+			}
+			this.setState({
+				displayCalculation: this.tokenList.join(" ")
+			});
+		}
+	}
+
+	clearMemory() {
+		this.itmStr = "";
+		this.tokenList = [];
+		this.result = 0;
+		this.setState({
+			displayCalculation: "",
+			displayResult: "0"
+		});
+	}
+
+	calculateResult() {
+		let lastIndex = this.tokenList.length - 1;
+		let calcSrc = [...this.tokenList];
+
+		if (this.tokenList.length > 0) {
+			if (this.itmStr !== "") {
+				if (this.itmStr === "0.") {
+					this.tokenList.push("0");
+					calcSrc.push("0");
+				} else {
+					this.tokenList.push(this.itmStr);
+					calcSrc.push(this.itmStr);
+				}
+			} else if (this.regExOperator.test(this.tokenList[lastIndex])) {
+				this.tokenList.pop();
+				calcSrc.pop();
+			}
+
+			this.itmStr = "";
+
+			this.processTL(this.tokenList);
+
+			console.log(this.result);
+			this.tokenList = [];
+
+			if (typeof this.result === "number") {
+				this.setState({
+					displayCalculation: calcSrc.join(" "),
+					displayResult: this.result,
+					debugJSX: <h2 />
+				});
+			}
+		}
+	}
+
+	processTL(list) {
+		if (list.length === 1) {
+			console.log(list[0]);
+			this.result = list[0];
+		} else {
+			console.log(JSON.stringify(list));
+
+			if (list.includes("*") || list.includes("/")) {
+				for (let i = 0; i < list.length; i++) {
+					if (list[i] === "*" || list[i] === "/") {
+						if (list[i] === "*") {
+							if (
+								this.regExDecimal.test(list[i - 1]) ||
+								this.regExDecimal.test(list[i + 1])
+							) {
+								list[i - 1] = parseFloat(list[i - 1]) * parseFloat(list[i + 1]);
+							} else {
+								list[i - 1] = parseInt(list[i - 1]) * parseInt(list[i + 1]);
+							}
+							list.splice(i, 2);
+							console.log("MULTIPLY!");
+							this.processTL(list);
+						} else if (list[i + 1] !== "0") {
+							if (
+								this.regExDecimal.test(list[i - 1]) ||
+								this.regExDecimal.test(list[i + 1])
+							) {
+								list[i - 1] = parseFloat(list[i - 1]) / parseFloat(list[i + 1]);
+							} else {
+								list[i - 1] = parseInt(list[i - 1]) / parseInt(list[i + 1]);
+							}
+							list.splice(i, 2);
+							console.log("DIVIDE!");
+							this.processTL(list);
+						} else {
+							this.setState({
+								displayResult: "Error! Cannot divide by 0",
+								displayCalculation: ""
+							});
+							break;
+						}
+					}
+				}
+			} else {
+				if (list[1] === "+") {
+					if (this.regExDecimal.test(list[0]) || this.regExDecimal.test(list[2])) {
+						list[0] = parseFloat(list[0]) + parseFloat(list[2]);
+					} else {
+						list[0] = parseInt(list[0]) + parseInt(list[2]);
+					}
+					list.splice(1, 2);
+					console.log("SUM!");
+					this.processTL(list);
+				} else {
+					if (this.regExDecimal.test(list[0]) || this.regExDecimal.test(list[2])) {
+						list[0] = parseFloat(list[0]) - parseFloat(list[2]);
+					} else {
+						list[0] = parseInt(list[0]) - parseInt(list[2]);
+					}
+					list.splice(1, 2);
+					console.log("SUBTRACT!");
+					this.processTL(list);
+				}
+			}
+		}
+	}
+
+	componentDidMount() {
+		addEventListener("keydown", this.handleKeyPress);
+	}
+
+	render() {
+		return (
+			<div id="calc-bg">
+				<div id="calc-body">
+					<Display
+						calculation={this.state.displayCalculation}
+						result={this.state.displayResult}
+					/>
+					<Buttons
+						parentHandler={this.handleClick}
+						clear={this.clearMemory}
+						calculate={this.calculateResult}
+					/>
+				</div>
+				{this.state.debugJSX}
+			</div>
+		);
+	}
+}
+
+const Display = props => {
+	return (
+		<div id="outer-display">
+			<div id="secondary-display">
+				<p id="display-calculation">{props.calculation}</p>
+			</div>
+			<div id="display">{props.result}</div>
+		</div>
+	);
+};
+
+const Buttons = props => {
+	return (
+		<div>
+			<div id="digits-operators">
+				<div id="upper-buttons" className="row m-0 btn-row">
+					<button
+						id="clear"
+						className="col-6 btn btn-danger calc-btn non-icon"
+						onClick={props.clear}
+					>
+						AC
+					</button>
+					<button
+						id="multiply"
+						className="col-3 btn btn-dark calc-btn"
+						onClick={props.parentHandler}
+					>
+						<i class="fas fa-times" />
+					</button>
+					<button
+						id="divide"
+						className="col-3 btn btn-dark calc-btn"
+						onClick={props.parentHandler}
+					>
+						<i class="fas fa-divide" />
+					</button>
+				</div>
+				<div /*id='row-1'*/ className="row m-0 btn-row">
+					<button
+						id="one"
+						className="col btn btn-secondary calc-btn non-icon"
+						onClick={props.parentHandler}
+					>
+						1
+					</button>
+					<button
+						id="two"
+						className="col btn btn-secondary calc-btn non-icon"
+						onClick={props.parentHandler}
+					>
+						2
+					</button>
+					<button
+						id="three"
+						className="col btn btn-secondary calc-btn non-icon"
+						onClick={props.parentHandler}
+					>
+						3
+					</button>
+					<button
+						id="add"
+						className="col btn btn-dark calc-btn"
+						onClick={props.parentHandler}
+					>
+						<i class="fas fa-plus" />
+					</button>
+				</div>
+				<div className="row m-0 btn-row">
+					<button
+						id="four"
+						className="col btn btn-secondary calc-btn non-icon"
+						onClick={props.parentHandler}
+					>
+						4
+					</button>
+					<button
+						id="five"
+						className="col btn btn-secondary calc-btn non-icon"
+						onClick={props.parentHandler}
+					>
+						5
+					</button>
+					<button
+						id="six"
+						className="col btn btn-secondary calc-btn non-icon"
+						onClick={props.parentHandler}
+					>
+						6
+					</button>
+					<button
+						id="subtract"
+						className="col btn btn-dark calc-btn"
+						onClick={props.parentHandler}
+					>
+						<i class="fas fa-minus" />
+					</button>
+				</div>
+				<div className="row m-0">
+					<div id="lower-digits" className="col-9">
+						<div className="row m-0 btn-row">
+							<button
+								id="seven"
+								className="col btn btn-secondary calc-btn non-icon"
+								onClick={props.parentHandler}
+							>
+								7
+							</button>
+							<button
+								id="eight"
+								className="col btn btn-secondary calc-btn non-icon"
+								onClick={props.parentHandler}
+							>
+								8
+							</button>
+							<button
+								id="nine"
+								className="col btn btn-secondary calc-btn non-icon"
+								onClick={props.parentHandler}
+							>
+								9
+							</button>
+						</div>
+						<div id="zero-decimal" className="row m-0 btn-row">
+							<button
+								id="zero"
+								className="col-8 btn btn-secondary calc-btn non-icon"
+								onClick={props.parentHandler}
+							>
+								0
+							</button>
+							<button
+								id="decimal"
+								className="col-4 btn btn-secondary calc-btn non-icon"
+								onClick={props.parentHandler}
+							>
+								.
+							</button>
+						</div>
+					</div>
+					<button
+						id="equals"
+						className="dummy col-3 btn btn-dark calc-btn non-icon"
+						onClick={props.calculate}
+					>
+						=
+					</button>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+const AltButton = props => {
+	<button id="equal-sign" className="patience">
+		<i class="fas fa-equals" />
+	</button>;
+};
+
+ReactDOM.render(<Calculator />, document.getElementById("root"));

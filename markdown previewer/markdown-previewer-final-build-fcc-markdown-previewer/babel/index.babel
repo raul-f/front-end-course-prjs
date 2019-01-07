@@ -1,0 +1,200 @@
+marked.setOptions({
+    gfm: true,
+    breaks: true
+});
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        let firstInput = `# Welcome to my React Markdown Previewer!
+
+## This is a sub-heading...
+### And here's some other cool stuff:
+  
+Heres some code, \`<div></div>\`, between 2 backticks.
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+  
+You can also make text **bold**... whoa!
+Or _italic_.
+Or... wait for it... **_both!_**
+And feel free to go crazy ~~crossing stuff out~~.
+
+There's also [links](https://www.freecodecamp.com), and
+> Block Quotes!
+
+And if you want to get really crazy, even tables:
+
+Wild Header | Crazy Header | Another Header?
+------------ | ------------- | ------------- 
+Your content can | be here, and it | can be here....
+And here. | Okay. | I think we get it.
+
+- And of course there are lists.
+  - Some are bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+
+1. And there are numbererd lists too.
+1. Use just 1s if you want! 
+1. But the list goes on...
+- Even if you use dashes or asterisks.
+* And last but not least, let's not forget embedded images:
+
+![React Logo w/ Text](https://goo.gl/Umyytc)`;
+        this.state = {
+            input: firstInput,
+            preview: marked(firstInput),
+            crtView: "both"
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.changeView = this.changeView.bind(this);
+    }
+
+    handleChange(event) {
+        let result = marked(event.target.value);
+        this.setState({
+            input: event.target.value,
+            preview: result
+        });
+    }
+
+    changeView(event) {
+        switch (event.target.id) {
+            case "edit-btn":
+                console.log("EXPAND EDITOR!");
+                if (this.state.crtView === "both") {
+                    this.setState({
+                        crtView: "edit"
+                    });
+                } else {
+                    this.setState({
+                        crtView: "both"
+                    });
+                }
+                break;
+            case "prev-btn":
+                console.log("EXPAND PREVIEWER!");
+                if (this.state.crtView === "both") {
+                    this.setState({
+                        crtView: "prev"
+                    });
+                } else {
+                    this.setState({
+                        crtView: "both"
+                    });
+                }
+        }
+    }
+
+    render() {
+        return (
+            <div id="app-frame">
+                <InputField
+                    input={this.state.input}
+                    handleChange={this.handleChange}
+                    viewMode={this.state.crtView}
+                    changeView={this.changeView}
+                />
+                <OutputField
+                    textPreview={this.state.preview}
+                    viewMode={this.state.crtView}
+                    changeView={this.changeView}
+                />
+            </div>
+        );
+    }
+}
+
+class InputField extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        let displayMode;
+        //
+        if (this.props.viewMode === "prev") {
+            displayMode = { display: "none" };
+        } else if (this.props.viewMode === "both") {
+            displayMode = { display: "flex", "flex-direction": "column" };
+        } else {
+            displayMode = {
+                display: "flex",
+                "flex-direction": "column",
+                width: "840px",
+                height: "1188px"
+            };
+        }
+        return (
+            <div id="editor-parent" style={displayMode}>
+                <div id="editor-header" className="bg-dark text-white">
+                    <h2>Editor</h2>
+                    <button
+                        id="edit-btn"
+                        className="icon-btn text-white"
+                        onClick={this.props.changeView}
+                    >
+                        {this.props.viewMode === "both" ? (
+                            <i class="fas fa-expand-arrows-alt" />
+                        ) : (
+                            <i class="fas fa-undo-alt" />
+                        )}
+                    </button>
+                </div>
+                <textarea
+                    value={this.props.input}
+                    id="editor"
+                    onChange={this.props.handleChange}
+                    spellcheck="false"
+                />
+            </div>
+        );
+    }
+}
+
+class OutputField extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        let displayMode;
+        if (this.props.viewMode === "edit") {
+            displayMode = { display: "none" };
+        } else {
+            displayMode = { display: "flex", "flex-direction": "column" };
+        }
+        return (
+            <div id="preview-frame" style={displayMode}>
+                <div id="preview-header" className="bg-dark text-white">
+                    <h2>Preview</h2>
+                    <button
+                        id="prev-btn"
+                        className="icon-btn text-white"
+                        onClick={this.props.changeView}
+                    >
+                        {this.props.viewMode === "both" ? (
+                            <i class="fas fa-expand-arrows-alt" />
+                        ) : (
+                            <i class="fas fa-undo-alt" />
+                        )}
+                    </button>
+                </div>
+                <div
+                    id="preview"
+                    dangerouslySetInnerHTML={{ __html: this.props.textPreview }}
+                />
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));

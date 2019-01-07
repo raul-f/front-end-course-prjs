@@ -1,0 +1,492 @@
+body {
+    font-family: Rubik;
+    background-image: url("https://drive.google.com/uc?export=download&id=1gqFPCnRLXJLMO3CsyDuJDVY7EQjRqBMZ");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 320vh;
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: 100px 1fr 65px;
+}
+
+h2 {
+    text-transform: uppercase;
+    color: white;
+    font-family: "Work Sans";
+}
+
+button {
+    font-weight: 500;
+    border-color: orange;
+    border-radius: 3px;
+    background-color: orange;
+    width: 80px;
+    height: 40px;
+    font-family: Rubik;
+    text-transform: uppercase;
+}
+
+button:hover {
+    cursor: pointer;
+    animation-name: color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes color {
+    100% {
+        border-color: gold;
+        background-color: gold;
+    }
+}
+
+/*Start of header section*/
+
+#header {
+    width: 100vw;
+    height: 80px;
+    border-style: hidden hidden solid hidden;
+    border-color: rgb(0, 28, 50);
+    background-color: black;
+    color: white;
+    grid-area: header;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    z-index: 2;
+}
+
+#img-container {
+    height: 80px;
+    width: 50vw;
+}
+
+#header-img {
+    height: 80px;
+    width: auto;
+    position: relative;
+    left: 30px;
+}
+
+#nav-bar {
+    height: 80px;
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 100;
+    color: white;
+    border-style: hidden;
+}
+
+.nav-link:hover {
+    animation-name: font-color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes font-color {
+    100% {
+        color: gold;
+    }
+}
+
+/*End of header section*/
+
+/*Start of main section*/
+
+#main {
+    grid-area: main;
+    display: grid;
+    grid-template-areas:
+        "pre-info-video"
+        "info-video"
+        "pre-features"
+        "features"
+        "pre-packages"
+        "packages"
+        "pre-intro-area"
+        "intro-area";
+    grid-template-rows: 80px 1fr 80px 1fr 80px 1fr 10px 10px;
+}
+
+#pre-intro-area {
+    grid-area: pre-intro-area;
+}
+
+#intro-area {
+    grid-area: intro-area;
+}
+
+/*Start of video section*/
+
+#pre-video-box {
+    text-align: center;
+    color: rgb(123, 174, 216);
+    grid-area: pre-info-video;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#video-box-title {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: orange;
+    background-color: rgb(6, 34, 56);
+    width: 40%;
+    padding: 4px;
+}
+
+#video-box {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(6, 34, 56, 0),
+        rgba(6, 34, 56, 0.2),
+        rgba(6, 34, 56, 0.75)
+    );
+    grid-area: info-video;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#video {
+    width: 1248px;
+    height: 702px;
+    border-style: hidden;
+}
+
+/*End of video section*/
+
+/*Start of features section*/
+
+#pre-feature-box {
+    background-image: linear-gradient(
+        to top,
+        rgba(6, 34, 56, 1),
+        rgba(6, 34, 56, 0.75)
+    );
+    text-align: center;
+    color: rgb(123, 174, 216);
+    grid-area: pre-features;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#feature-box-title {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: orange;
+    background-color: rgb(6, 34, 56);
+    width: 20%;
+    padding: 4px;
+}
+
+#feature-box {
+    color: rgb(123, 174, 216);
+    background-color: rgb(6, 34, 56);
+    text-align: center;
+    grid-area: features;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#feature-1 {
+    position: relative;
+    top: 70px;
+    width: 70%;
+    border-style: hidden hidden solid hidden;
+    border-color: orange;
+}
+
+#feature-2 {
+    width: 70%;
+    border-style: hidden hidden solid hidden;
+    border-color: orange;
+}
+
+#feature-3 {
+    position: relative;
+    bottom: 70px;
+    width: 70%;
+    border-style: hidden hidden hidden hidden;
+    border-color: orange;
+}
+
+/*End of features section*/
+
+/*Start of prices section*/
+
+#pre-price-box {
+    text-align: center;
+    color: rgb(123, 174, 216);
+    background-color: rgb(6, 34, 56);
+    grid-area: pre-packages;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#price-box-title {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: orange;
+    background-color: rgb(6, 34, 56);
+    width: 20%;
+    padding: 4px;
+}
+
+#price-box {
+    color: rgb(123, 174, 216);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(6, 34, 56, 1),
+        rgba(6, 34, 56, 1),
+        rgba(6, 34, 56, 0)
+    );
+    */: lightgreen;
+    grid-area: packages;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#sub-price-box {
+    position: relative;
+    bottom: 100px;
+    height: 60%;
+    width: 70%;
+    display: grid;
+    grid-template-areas:
+        "price-1 price-2 price-3"
+        "form form form";
+    grid-template-rows: 1fr 130px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#price-1 {
+    grid-area: price-1;
+    text-align: center;
+    border-style: solid;
+    margin: 3px;
+}
+
+#price-2 {
+    grid-area: price-2;
+    text-align: center;
+    border-style: solid;
+    margin: 3px;
+}
+
+#price-3 {
+    grid-area: price-3;
+    text-align: center;
+    border-style: solid;
+    margin: 3px;
+}
+
+#form {
+    width: 100%;
+    grid-area: form;
+    display: flex;
+    position: relative;
+    top: 20px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#email {
+    width: 300px;
+    height: 25px;
+    border-radius: 5px;
+    border-style: hidden;
+}
+
+#submit {
+    margin-top: 10px;
+    font-weight: 500;
+    border-color: orange;
+    border-radius: 3px;
+    background-color: orange;
+    width: 80px;
+    height: 40px;
+    font-family: Rubik;
+    text-transform: uppercase;
+}
+
+#submit:hover {
+    cursor: pointer;
+    animation-name: color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+
+/*End of prices section*/
+
+/*End of main section*/
+
+#footer {
+    color: white;
+    grid-area: footer;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    padding: 0 30px 0 30px;
+}
+
+/*Media queries section*/
+
+@media (min-width: 1500px) {
+    #sub-price-box {
+        width: 50%;
+    }
+}
+
+@media (max-width: 1000px) {
+    body {
+        grid-template-rows: 100px 1fr 90px;
+        font-size: 12px;
+        background-color: rgba(6, 34, 56, 1);
+    }
+
+    /*Start of header section*/
+    #header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #img-container {
+        display: none;
+        height: 80px;
+        width: 50vw;
+    }
+
+    #nav-bar {
+        height: 80px;
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 100;
+        color: white;
+        border-style: hidden;
+    }
+
+    /*End of header section*/
+
+    /*Start of main section*/
+
+    #main {
+        grid-area: main;
+        display: grid;
+        grid-template-areas:
+            "pre-info-video"
+            "info-video"
+            "pre-features"
+            "features"
+            "pre-packages"
+            "packages"
+            "pre-intro-area"
+            "intro-area";
+        grid-template-rows: 80px 1fr 80px 1fr 80px 2.5fr 10px 10px;
+    }
+
+    /*Start of video section*/
+
+    #video-box-title {
+        width: 70%;
+    }
+
+    #video {
+        width: 100vw;
+        height: 56.25vw;
+        border-style: hidden;
+    }
+
+    /*End of video section*/
+
+    /*Start of features section*/
+
+    #feature-box-title {
+        width: 40%;
+        padding: 4px;
+    }
+
+    #feature-1 {
+        position: relative;
+        top: 0px;
+        width: 90%;
+    }
+
+    #feature-2 {
+        width: 90%;
+    }
+
+    #feature-3 {
+        position: relative;
+        bottom: 0px;
+        width: 90%;
+    }
+
+    /*End of features section*/
+
+    /*Start of prices section*/
+
+    #price-box-title {
+        width: 40%;
+    }
+
+    #sub-price-box {
+        position: relative;
+        bottom: 100px;
+        height: 80%;
+        width: 100vw;
+        display: grid;
+        grid-template-areas:
+            "price-1"
+            "price-2"
+            "price-3"
+            "form";
+        grid-template-rows: 1fr 1fr 1fr 130px;
+        grid-template-columns: 1fr;
+    }
+
+    #price-1,
+    #price-2,
+    #price-3 {
+        width: 70%;
+        height: 45vh;
+        margin: 3px auto 3px auto;
+    }
+
+    /*End of prices section*/
+
+    /*End of main section*/
+}

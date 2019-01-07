@@ -1,0 +1,89 @@
+$graph-width: 1050px;
+$graph-height: (2/3) * $graph-width;
+
+#root {
+	height: 100vh;
+	background: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/vintage-concrete.png);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Lato", sans-serif;
+}
+
+#tooltip {
+	border: 1px solid #e9ecef;
+	border-radius: 4px;
+	background-color: white;
+	min-width: 160px;
+	padding: 10px;
+	height: 80px;
+	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#tooltip-title {
+	font-size: 20px;
+	padding: 0;
+	margin: 0;
+}
+
+#tooltip-value {
+	font-size: 20px;
+	padding: 0;
+	margin: 0;
+}
+
+#chart-box {
+	min-width: $graph-width;
+	min-height: $graph-height;
+	border: 1px solid;
+	background-color: white;
+	box-shadow: 0 0 15px 2px black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#title {
+	font-size: 35px;
+}
+
+.bar-up {
+	fill: url(#gradient-1);
+}
+
+.bar-down {
+	fill: url(#gradient-2);
+}
+
+.bar-up:hover {
+	stroke-width: 1px;
+	stroke: white;
+	fill: #28a745;
+}
+
+.bar-down:hover {
+	stroke-width: 1px;
+	stroke: pink;
+	fill: #ed99a1;
+}
+
+#y-label {
+	font-size: 14px;
+	font-weight: 100;
+}
+
+#chart-aux {
+	border: 1px solid;
+	overflow: scroll;
+	height: 100%;
+	width: $graph-width;
+}

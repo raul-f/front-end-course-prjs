@@ -1,0 +1,37 @@
+@mixin f-style($direction, $justify, $align) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+}
+
+@mixin no-gttrs () {
+	margin: 0;
+	padding: 0;
+} 
+
+#root {
+	#title {
+		margin: 15px 0;
+	}
+	#description {
+		font-size: 20px;
+		margin: 0 0 15px 0;
+	}
+	min-height: 100vh;
+	@include f-style(column, center, center);
+	#tooltip {
+		padding: 10px;
+		min-height: 65px;
+		min-width: 200px;
+		position: absolute;
+		@include f-style(column, center, center);
+		background-color: rgba(255,250,205,0.85);
+		border-radius: 7px;
+		opacity: 0;
+		pointer-events: none;
+		p {
+			margin: 0;
+		}
+	}
+}

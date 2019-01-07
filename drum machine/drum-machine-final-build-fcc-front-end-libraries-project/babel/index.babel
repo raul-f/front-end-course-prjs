@@ -1,0 +1,449 @@
+class DrumMachine extends React.Component {
+  
+  constructor(props) {
+    super(props);
+
+    this.kitLibrary = {
+      Acoustic: {
+        tag: 'Acoustic kit',
+        audioSources: {
+          "Q-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Snr-05.wav",
+          "W-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_Crash-03.wav",
+          "E-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_SnrOff-07.wav",
+          "A-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_OpHat-06.wav",
+          "S-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_Sab_HfHat-03.wav",
+          "D-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_ClHat-08.wav",
+          "Z-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Flam-04.wav",
+          "X-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Kick-04.wav",
+          "C-drum-pad":  "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Rim-07.wav"
+        },
+        drumTags: {
+          "Q-drum-pad": "Snare",
+          "W-drum-pad": "Cymbal Crash",
+          "E-drum-pad": "Snares Off",
+          "A-drum-pad": "Open Hi-Hat",
+          "S-drum-pad": "Half-open Hi-Hat",
+          "D-drum-pad": "Closed Hi-Hat",
+          "Z-drum-pad": "Flam",
+          "X-drum-pad": "Kick",
+          "C-drum-pad": "Rim Shot"
+        }
+      },
+      Electro: {
+        tag: 'Electro kit',
+        audioSources: {
+          "Q-drum-pad": "",
+          "W-drum-pad": "",
+          "E-drum-pad": "",
+          "A-drum-pad": "",
+          "S-drum-pad": "",
+          "D-drum-pad": "",
+          "Z-drum-pad": "",
+          "X-drum-pad": "",
+          "C-drum-pad": ""
+        },
+        drumTags: {
+          "Q-drum-pad": "Snare",
+          "W-drum-pad": "Cymbal Crash",
+          "E-drum-pad": "Snares Off",
+          "A-drum-pad": "Open Hi-Hat",
+          "S-drum-pad": "Half-open Hi-Hat",
+          "D-drum-pad": "Closed Hi-Hat",
+          "Z-drum-pad": "Flam",
+          "X-drum-pad": "Kick",
+          "C-drum-pad": "Rim Shot"
+        }
+      },
+      Vinyl: {
+        tag: 'Vinyl kit',
+        audioSources: {
+          "Q-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Snr-05.wav",
+          "W-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_Crash-03.wav",
+          "E-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_SnrOff-07.wav",
+          "A-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_OpHat-06.wav",
+          "S-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_Sab_HfHat-03.wav",
+          "D-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_ClHat-08.wav",
+          "Z-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Flam-04.wav",
+          "X-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Kick-04.wav",
+          "C-drum-pad":  "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Rim-07.wav"
+        },
+        drumTags: {
+          "Q-drum-pad": "Snare",
+          "W-drum-pad": "Cymbal Crash",
+          "E-drum-pad": "Snares Off",
+          "A-drum-pad": "Open Hi-Hat",
+          "S-drum-pad": "Half-open Hi-Hat",
+          "D-drum-pad": "Closed Hi-Hat",
+          "Z-drum-pad": "Flam",
+          "X-drum-pad": "Kick",
+          "C-drum-pad": "Rim Shot"
+        }
+      },
+      Kurzweil: {
+        tag: 'Kurzweil kit',
+        audioSources: {
+          "Q-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Snr-05.wav",
+          "W-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_Crash-03.wav",
+          "E-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_SnrOff-07.wav",
+          "A-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_OpHat-06.wav",
+          "S-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_Sab_HfHat-03.wav",
+          "D-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_ClHat-08.wav",
+          "Z-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Flam-04.wav",
+          "X-drum-pad": "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Kick-04.wav",
+          "C-drum-pad":  "https://s3-sa-east-1.amazonaws.com/myaudioclips.raulf/CYCdh_K2room_Rim-07.wav"
+        },
+        drumTags: {
+          "Q-drum-pad": "Snare",
+          "W-drum-pad": "Cymbal Crash",
+          "E-drum-pad": "Snares Off",
+          "A-drum-pad": "Open Hi-Hat",
+          "S-drum-pad": "Half-open Hi-Hat",
+          "D-drum-pad": "Closed Hi-Hat",
+          "Z-drum-pad": "Flam",
+          "X-drum-pad": "Kick",
+          "C-drum-pad": "Rim Shot"
+        }
+      }
+    };
+
+    this.displayClock;
+    this.buttonClock;
+
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handlePower = this.handlePower.bind(this);
+    this.handleKitChange = this.handleKitChange.bind(this);
+
+    this.state = {
+      power: true,
+      clipLabel: "",
+      currentKit: this.kitLibrary["Acoustic"],
+    };
+  }
+
+  handleKeyPress(event) {
+    let eventCallback = {};
+
+    clearTimeout(this.displayClock);
+
+    let key = event.key.toUpperCase();
+    let pad = key + '-drum-pad';
+
+    const node = document.getElementById(key);
+
+    if (key === "P") {
+      this.handlePower();
+    } else if (this.state.power) {
+      if (node.paused) {
+        node.play();
+      } else {
+        node.currentTime = 0;
+      }
+      this.setState({
+        clipLabel: this.state.currentKit['drumTags'][pad]
+      });
+    }
+
+    this.displayClock = setTimeout(
+      (() => {
+        this.setState({ clipLabel: "" });
+      }).bind(this),
+      1500
+    );
+    document.getElementById(pad).className =
+      "drum-pad btn btn-dark text-white";
+    this.buttonClock = setTimeout(
+      function() {
+        document.getElementById(pad).className =
+          "drum-pad btn btn-secondary text-white";
+      }.bind(this),
+      130
+    );
+  }
+
+  handleClick(event) {
+    
+    clearTimeout(this.displayClock);
+
+    let key = event.target.id;
+    
+    if (this.state.power) {
+      if (document.getElementById(key[0]).paused) {
+        document.getElementById(key[0]).play();
+      } else {
+        document.getElementById(key[0]).currentTime = 0;
+      }
+      this.setState({
+        clipLabel: this.state.currentKit['drumTags'][key]
+      });
+    }
+
+    this.displayClock = setTimeout(
+      function() {
+        this.setState({ clipLabel: "" });
+      }.bind(this),
+      1500
+    );
+
+    document.getElementById(key).className = "drum-pad btn btn-dark text-white";
+    this.buttonClock = setTimeout(
+      function() {
+        document.getElementById(key).className =
+          "drum-pad btn btn-secondary text-white";
+      }.bind(this),
+      130
+    );
+  }
+
+  handlePower() {
+    this.setState({
+      power: !this.state.power,
+      clipLabel: ""
+    });
+  }
+  
+  handleKitChange(event) {
+    this.setState({
+      currentKit: this.kitLibrary[event.target.id]
+    });
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress);
+  }
+
+  render() {
+    return (
+      <div id="dm-container">
+        <div id="drum-machine" className="row bg-dark">
+          <DrumButtons
+            kit={this.state.currentKit["audioSources"]}
+            parentHandleClick={this.handleClick}
+          />
+          <Display
+            handleChange={this.handleKitChange} 
+            dropdownLabel={this.state.currentKit.tag}
+            clipLabel={this.state.clipLabel}
+            parentHandlePower={this.handlePower}
+            parentPowerState={this.state.power}
+          />
+        </div>
+        {this.state.visibility && this.state.controlJSX}
+      </div>
+    );
+  }
+}
+
+const DrumButtons = props => {
+  let btnClassName = "drum-pad btn btn-secondary text-white";
+  return (
+    <div id="outer-drum" className="col-8">
+      <div id="drum-set">
+        <div className="row drum-pad-row">
+          <div className="col drum-pad-box">
+            <button
+              id="Q-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="Q"
+                src={props.kit["Q-drum-pad"]}
+                type="audio/wav"
+                className="clip"
+              />
+              Q
+            </button>
+          </div>
+          <div className="col drum-pad-box">
+            <button
+              id="W-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="W"
+                src={props.kit["W-drum-pad"]}
+                type="audio/wav"
+                className="clip"
+              />
+              W
+            </button>
+          </div>
+          <div className="col drum-pad-box">
+            <button
+              id="E-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="E"
+                src={props.kit["E-drum-pad"]}
+                type="audio/wav"
+                className="clip"
+              />
+              E
+            </button>
+          </div>
+        </div>
+        <div className="row drum-pad-row">
+          <div className="col-4 drum-pad-box">
+            <button
+              id="A-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="A"
+                src={props.kit["A-drum-pad"]}
+                type="audio/mp3"
+                className="clip"
+              />
+              A
+            </button>
+          </div>
+          <div className="col-4 drum-pad-box">
+            <button
+              id="S-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="S"
+                src={props.kit["S-drum-pad"]}
+                type="audio/mp3"
+                className="clip"
+              />
+              S
+            </button>
+          </div>
+          <div className="col-4 drum-pad-box">
+            <button
+              id="D-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="D"
+                src={props.kit["D-drum-pad"]}
+                type="audio/wav"
+                className="clip"
+              />
+              D
+            </button>
+          </div>
+        </div>
+        <div className="row drum-pad-row">
+          <div className="col-4 drum-pad-box">
+            <button
+              id="Z-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="Z"
+                src={props.kit["Z-drum-pad"]}
+                type="audio/wav"
+                className="clip"
+              />
+              Z
+            </button>
+          </div>
+          <div className="col-4 drum-pad-box">
+            <button
+              id="X-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="X"
+                src={props.kit["X-drum-pad"]}
+                type="audio/wav"
+                className="clip"
+              />
+              X
+            </button>
+          </div>
+          <div className="col-4 drum-pad-box">
+            <button
+              id="C-drum-pad"
+              className={btnClassName}
+              onClick={props.parentHandleClick}
+            >
+              <audio
+                id="C"
+                src={props.kit["C-drum-pad"]}
+                type="audio/wav"
+                className="clip"
+              />
+              C
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Display = props => {
+  let powerStyle;
+  let powerIconClass;
+  switch (props.parentPowerState) {
+    case true:
+      powerStyle = { "justify-content": "flex-start" };
+      powerIconClass = "text-white";
+      break;
+    case false:
+      powerStyle = { "justify-content": "flex-end" };
+      powerIconClass = "text-secondary";
+      break;
+  }
+  let optionClass = "bg-secondary text-white";
+  return (
+    <div id="outer-display" className="col-4">
+      <div id="inner-display">
+        <div
+          id="power-slider"
+          style={powerStyle}
+          onClick={props.parentHandlePower}
+        >
+          <button id="power-button" className="btn btn-dark">
+            <i class={"fas fa-power-off " + powerIconClass} />
+          </button>
+        </div>
+
+        <button className="btn btn-secondary">Vol slider (pHolder)</button>
+
+        <div id="dsp-holder">
+          <p id="display">{props.clipLabel}</p>
+        </div>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+          >
+            {props.dropdownLabel}
+          </button>
+          <div class="dropdown-menu bg-secondary">
+            <a id='Acoustic' class="dropdown-item" href="#" onClick={props.handleChange}>
+              Acoustic
+            </a>
+            <a id='Electro' class="dropdown-item" href="#" onClick={props.handleChange}>
+              Electro
+            </a>
+            <a id='Vinyl' class="dropdown-item" href="#" onClick={props.handleChange}>
+              Vinyl
+            </a>
+            <a id='Kurzweil' class="dropdown-item" href="#" onClick={props.handleChange}>
+              Kurzweil
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<DrumMachine />, document.getElementById("root"));

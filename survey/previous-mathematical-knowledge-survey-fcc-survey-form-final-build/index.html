@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Previous Mathematical Knowledge Survey - FCC: Survey Form - Final Build</title>
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Open+Sans|Rubik" rel="stylesheet">
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <header id="header">
+    <h1 id="title">Previous Mathematical Knowledge Survey</h1>
+</header>
+<div id="leftbar"></div>
+<div id="rightbar"></div>
+<main id="form-page">
+    <form id="survey-form">
+        <div id="description-container">
+            <p id="description">Hi! I'll be your math teacher this semester, so I made this survey to assess your current level of math knowledge.</p>
+        </div>
+        <label id="name-label" for="name">Name: </label>
+        <div id="name-container">
+            <input type="text" id="name" placeholder=" Enter your full name" required>
+        </div>
+        <label id="email-label" for="email">E-mail: </label>
+        <div id="email-container">
+            <input type="email" id="email" placeholder=" example@domain.com" required>
+        </div>
+        <label id="number-label" for="number">Age: </label>
+        <div id="number-container">
+            <input type="number" id="number" placeholder=" Enter your age (0 to 130)" min="0" max="130">
+        </div>
+        <label id="dropdown-label" for="dropdown">Current level of education: </label>
+        <div id="dropdown-container">
+            <select id="dropdown">
+        <option disabled selected value> - select your current level of education -</option>
+        <option value="1">Middle School/Junior High</option>
+        <option value="2">High School</option>
+        <option value="3">Undergraduate (Math-related major)</option>
+        <option value="4">Undergraduate (Non-math-related major)</option>
+        <option value="5">College graduate (Math-related major)</option>
+        <option value="6">College graduate (Non-math-related major)</option>
+      </select>
+        </div>
+        <label id="radio-label-1" for="interest-pure">Rate your interest in learning pure mathematics: </label>
+        <div id="radio-set-1">
+            <div id="option-1p-container"><input id="option-1" type="radio" name="interest-pure" value="1p">I don't want to learn it<br></div>
+            <div id="option-2p-container"><input id="option-2" type="radio" name="interest-pure" value="2p">Not much interested at all<br></div>
+            <div id="option-3p-container"><input id="option-3" type="radio" name="interest-pure" value="3p">Indifferent<br></div>
+            <div id="option-4p-container"><input id="option-4" type="radio" name="interest-pure" value="4p">Interested<br></div>
+            <div id="option-5p-container"><input id="option-5" type="radio" name="interest-pure" value="5p">Enthusiastic<br></div>
+        </div>
+        <label id="radio-label-2" for="interest-applied">Rate your interest in learning applied mathematics: </label>
+        <div id="radio-set-2">
+            <div id="option-1a-container"><input id="option-1" type="radio" name="interest-applied" value="1a">I don't want to learn it<br></div>
+            <div id="option-2a-container"><input id="option-2" type="radio" name="interest-applied" value="2a">Not much interested at all<br></div>
+            <div id="option-3a-container"><input id="option-3" type="radio" name="interest-applied" value="3a">Indifferent<br></div>
+            <div id="option-4a-container"><input id="option-4" type="radio" name="interest-applied" value="4a">Interested<br></div>
+            <div id="option-5a-container"><input id="option-5" type="radio" name="interest-applied" value="5a">Enthusiastic<br></div>
+        </div>
+        <label id="checkbox-label" for="checkbox-set">Select the topics of math you<br> are primarily interested in learning:</label>
+        <div id="checkbox-set">
+            <div id="option-i-container"><input id="option-i" type="checkbox" name="check" value="i">Number Theory</div>
+            <div id="option-ii-container"><input id="option-ii" type="checkbox" name="check" value="ii">Geometry</div>
+            <div id="option-iii-container"><input id="option-iii" type="checkbox" name="check" value="iii">Calculus</div>
+            <div id="option-iv-container"><input id="option-iv" type="checkbox" name="check" value="iv">Probability and Statistics</div>
+            <div id="option-v-container"><input id="option-v" type="checkbox" name="check" value="v">Linear Algebra</div>
+            <div id="option-vi-container"><input id="option-vi" type="checkbox" name="check" value="vi">Topology</div>
+            <div id="option-vii-container"><input id="option-vii" type="checkbox" name="check" value="vii">Logic</div>
+            <div id="option-viii-container"><input id="option-viii" type="checkbox" name="check" value="viii">Set Theory</div>
+            <div id="option-ix-container"><input id="option-ix" type="checkbox" name="check" value="ix">Graph Theory</div>
+        </div>
+        <div id="textarea-label"><label for="textarea">Something you'd like to say?</label></div>
+        <div id="textarea-container">
+            <textarea id="textarea" placeholder=" Enter your comment here"></textarea>
+        </div>
+        <div id="submit-field"><button id="submit" type="submit">Submit</submit></div>
+  </form>
+</main>
+<footer id="footer"></footer>
+<!--<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>-->
+  
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

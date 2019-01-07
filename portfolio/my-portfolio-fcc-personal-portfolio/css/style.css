@@ -1,0 +1,296 @@
+body {
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+        "welcome"
+        "projects"
+        "links"
+        "footer";
+    grid-template-rows: 100vh 100vh 100vh 60px;
+    font-family: Rubik, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+footer {
+    border-style: solid hidden hidden hidden;
+    border-width: 5px;
+    background-color: black;
+    grid-area: footer;
+}
+
+/* classes */
+
+.nav-link {
+    color: white;
+}
+
+.project-tile {
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+    border-radius: 10px;
+    background-color: lightblue;
+    height: 180px;
+    width: 250px;
+    display: grid;
+    grid-template-areas:
+        "img"
+        "title";
+    grid-template-rows: 140px 40px;
+}
+
+.project-tile:hover {
+    cursor: pointer;
+}
+
+.project-img-holder {
+    grid-area: img;
+}
+
+.project-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-title-holder {
+    grid-area: title;
+    border-style: solid hidden hidden hidden;
+    border-width: 2px;
+    border-color: gray;
+    border-radius: 0 0 10px 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-title {
+    font-weight: 200;
+    font-size: 16px;
+}
+
+/* ids */
+
+#navbar {
+    color: white;
+    position: fixed;
+    background-color: black;
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#title {
+    font-size: 30px;
+}
+
+#sub-title {
+    position: relative;
+    bottom: 35px;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+#welcome-section {
+    background-color: rgb(6, 34, 56);
+    background: url("https://drive.google.com/uc?export=download&id=1BxEPsyQpQ9GdH4SjuqY8nMIep9K24s3k");
+    height: 100vh;
+    grid-area: welcome;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    height: 80px;
+    border-style: solid;
+    padding: 20px 20px 0 20px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* start of projects section */
+
+#projects {
+    border-style: solid hidden hidden hidden;
+    border-width: 5px;
+    grid-area: projects;
+    background-image: url("https://drive.google.com/uc?export=download&id=1mg-kHq2fvYt4FS4PtUaAcyhQh4PVO_x5");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 200;
+}
+
+#projects-title,
+#projects-content {
+    background-color: white;
+    padding: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+#project-display {
+    display: grid;
+    grid-template-areas:
+        "tile-1 tile-2 tile-3 tile-4"
+        "tile-5 tile-6 tile-7 tile-8";
+    grid-template-rows: 250px 250px;
+    grid-template-columns: repeat(4, 300px);
+    align-items: center;
+    justify-items: center;
+}
+
+#project-tile-1 {
+    grid-area: tile-1;
+}
+
+#project-tile-2 {
+    grid-area: tile-2;
+}
+
+#project-tile-3 {
+    grid-area: tile-3;
+}
+
+#project-tile-4 {
+    grid-area: tile-4;
+}
+
+/* end of projects section */
+
+#links {
+    border-style: solid hidden hidden hidden;
+    border-width: 5px;
+    grid-area: links;
+    background: url("https://drive.google.com/uc?export=download&id=16L81jIAhdSfnWmScvOSrLr-9wN1RZ-42");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#links-title {
+    background-color: white;
+    padding: 10px;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+#links-div {
+    background-color: white;
+    padding: 10px;
+    height: 100px;
+    width: 400px;
+    border-style: solid;
+    display: grid;
+    grid-template-areas: "github fcc stack-overflow";
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#github,
+#fcc,
+#stack-overflow {
+}
+
+#github-img,
+#fcc-img,
+#stack-overflow-img {
+    width: auto;
+    max-height: 40px;
+}
+
+#github {
+    grid-area: github;
+}
+
+#fcc {
+    grid-area: fcc;
+}
+
+#stack-overflow {
+    grid-area: stack-overflow;
+}
+
+#profile-link {
+    color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 850px) {
+    body {
+        text-align: center;
+        margin: 0;
+        display: grid;
+        grid-template-areas:
+            "welcome"
+            "projects"
+            "links"
+            "footer";
+        grid-template-rows: 100vh 1300px 120vh 60px;
+        font-family: Rubik, sans-serif;
+    }
+
+    .nav-link {
+        font-size: 12px;
+        color: white;
+    }
+
+    #container {
+        width: 70vw;
+        height: auto;
+    }
+
+    #title {
+        font-size: 20px;
+    }
+
+    #sub-title {
+        position: relative;
+        bottom: 25px;
+        font-weight: 100;
+        font-size: 14px;
+    }
+
+    #project-display {
+        grid-template-areas:
+            "tile-1"
+            "tile-2"
+            "tile-3"
+            "tile-4";
+        grid-template-rows: repeat(4, 250px);
+        grid-template-columns: 300px;
+    }
+
+    #links-div {
+        background-color: white;
+        padding: 10px;
+        height: 400px;
+        width: 100px;
+        border-style: solid;
+        display: grid;
+        grid-template-areas:
+            "github"
+            "fcc"
+            "stack-overflow";
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-content: center;
+        text-align: center;
+    }
+}

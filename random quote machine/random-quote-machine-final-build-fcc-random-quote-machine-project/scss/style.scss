@@ -1,0 +1,116 @@
+$std-height: 100vh;
+
+body {
+	margin: 0;
+	height: $std-height;
+	min-width: 100vw;
+	background-image: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/isometropolis.jpg);
+}
+
+#root {
+	height: 100%;
+}
+
+#app {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#content {
+	/*border-style: solid;
+  border-color: red;*/
+	min-height: 80%;
+	padding: 15px;
+}
+
+#text {
+	min-height: 70%;
+	font-size: 25px;
+}
+
+#author {
+	text-align: right;
+}
+
+#tools {
+	/*border-style: solid;
+  border-color: blue;*/
+	padding: 10px;
+	height: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#tweet-quote {
+	padding: 0 0 0 3px;
+}
+
+/*#share-quote {
+  padding: 0 3px 0 0;
+}*/
+
+#quote-box {
+	border-color: #dee2e6;
+	max-width: 600px;
+	min-height: 200px;
+}
+
+#credits {
+	border-top: 1px solid #dee2e6;
+	display: flex;
+	height: 40px;
+	justify-content: center;
+	align-items: center;
+}
+
+#credits-line {
+	font-size: 16px;
+	position: relative;
+	top: 3px;
+}
+
+#port-link:link,
+#port-link:visited,
+#port-link:active,
+#port-link:hover {
+	color: #868e96;
+	text-decoration: none !important;
+}
+
+#port-link:active,
+#port-link:hover {
+	text-decoration: none !important;
+	animation-name: lighten;
+	animation-duration: 250ms;
+	animation-fill-mode: forwards;
+}
+
+@keyframes lighten {
+	100% {
+		color: #adb5bd;
+	}
+}
+
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active {
+	box-shadow: none !important;
+}
+
+@media (max-width: 850px) {
+	#text {
+		font-size: 20px;
+	}
+
+	#author {
+		font-size: 14px;
+	}
+
+	#quote-box {
+		max-width: 85vw;
+	}
+}

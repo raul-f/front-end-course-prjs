@@ -1,0 +1,104 @@
+body {
+  background: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/what-the-hex-contrast.png);
+  min-height: 100vh;
+  margin: 0px;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 20vh 1fr 8vh;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer"
+}
+
+#main {
+  grid-area: content;
+  font-family: "Open Sans", sans-serif;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  background-color: black;
+  grid-area: footer;
+  padding-bottom: 10px;
+  margin-bottom: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#title {
+  font-family: "Merriweather Sans", sans-serif;
+  grid-area: header;
+  text-align: center;
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sub-title {
+  font-weight: 100;
+  position: relative;
+  top: -10px;
+}
+
+#img-div {
+  border: 1px solid;
+  background-color: white;
+  text-align: center;
+  min-width: 300px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  min-width: 100px;
+  margin: auto auto auto auto;
+  border-radius: 20px;
+  width: 100%;
+}
+
+#image {
+  border-radius: 7px;
+  max-width: 100%;
+  display: block;
+  height: auto;
+  margin: auto;
+}
+
+#container {
+  background-color: rgba(255,255,255,0.92);
+  border-width: 1px;
+  border-style: hidden solid hidden solid;
+  width: 50%;
+  margin: 0px auto 0px auto;
+  padding: 70px;
+  text-align: justify;
+}
+
+#footer-text {
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 100;
+  font-size: 22px;
+  margin: 0;
+}
+
+#tribute-link, #tribute-link:visited, #tribute-link:active {
+  color: #868e96;
+}
+
+@media (max-width: 600px) {
+  body {
+    grid-template-rows: 30vh 1fr 15vh;
+    font-size: 14px;
+  }
+  #footer-text {
+    font-size: 16px;
+  }
+  #container {
+    width: 90%;
+    padding: 10px;
+  }
+}
+  
+  

@@ -1,0 +1,364 @@
+class PmdClock extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.handleClick = this.handleClick.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.togglePlay = this.togglePlay.bind(this);
+		this.tick = this.tick.bind(this);
+		this.updateValue = this.updateValue.bind(this);
+
+		this.session = 25;
+		this.break = 5;
+		this.countdown;
+
+		this.state = {
+			brkLength: 5,
+			sesLength: 25,
+			crtInterval: "Session",
+			play_pause: false,
+			remainingSecs: this.session * 60
+		};
+	}
+
+	handleClick(event) {
+		switch (event.target.id) {
+			case "break-increment":
+				if (this.state.brkLength < 60) {
+					this.break += 1;
+					if (this.state.crtInterval === "Break") {
+						this.setState({
+							brkLength: this.break,
+							remainingSecs: this.break * 60
+						});
+					} else {
+						this.setState({
+							brkLength: this.break
+						});
+					}
+				}
+				break;
+			case "break-decrement":
+				if (this.state.brkLength > 1) {
+					this.break -= 1;
+					if (this.state.crtInterval === "Break") {
+						this.setState({
+							brkLength: this.break,
+							remainingSecs: this.break * 60
+						});
+					} else {
+						this.setState({
+							brkLength: this.break
+						});
+					}
+				}
+				break;
+			case "session-increment":
+				if (this.state.sesLength < 60) {
+					this.session += 1;
+					if (this.state.crtInterval === "Session") {
+						this.setState({
+							sesLength: this.session,
+							remainingSecs: this.session * 60
+						});
+					} else {
+						this.setState({
+							sesLength: this.session
+						});
+					}
+				}
+				break;
+			case "session-decrement":
+				if (this.state.sesLength > 1) {
+					this.session -= 1;
+					if (this.state.crtInterval === "Session") {
+						this.setState({
+							sesLength: this.session,
+							remainingSecs: this.session * 60
+						});
+					} else {
+						this.setState({
+							sesLength: this.session
+						});
+					}
+				}
+				break;
+			case "reset":
+				const alarm = document.getElementById("beep");
+				this.session = 25;
+				this.break = 5;
+				if (!alarm.paused) {
+					alarm.pause();
+					alarm.currentTime = 0;
+				}
+				this.setState({
+					brkLength: this.break,
+					sesLength: this.session,
+					crtInterval: "Session",
+					remainingSecs: this.session * 60
+				});
+				if (this.state.play_pause) {
+					this.togglePlay();
+				}
+				break;
+		}
+	}
+
+	handleChange(event) {
+		if (event.target.id === "break-length") {
+			this.break = parseInt(event.target.value);
+			this.forceUpdate();
+		} else {
+			this.session = parseInt(event.target.value);
+			this.forceUpdate();
+		}
+	}
+
+	updateValue() {
+		if (this.break > 60 || this.break < 1) {
+			if (this.break > 60) {
+				this.break = 60;
+			} else {
+				this.break = 1;
+			}
+		} else if (this.session > 60 || this.session < 1) {
+			if (this.session > 60) {
+				this.session = 60;
+			} else {
+				this.session = 1;
+			}
+		}
+
+		if (this.state.crtInterval === "Session") {
+			this.setState({
+				brkLength: this.break,
+				sesLength: this.session,
+				remainingSecs: this.session * 60
+			});
+		} else if (this.state.play_pause) {
+			this.setState({
+				brkLength: this.break,
+				sesLength: this.session,
+				remainingSecs: this.break * 60
+			});
+		}
+	}
+
+	togglePlay() {
+		if (this.state.sesLength > 60 || this.state.sesLength < 1) {
+			if (this.state.sesLength > 60) {
+				this.setState({
+					sesLength: 60,
+					remainingSecs: 3600
+				});
+			} else {
+				this.setState({
+					sesLength: 1,
+					remainingSecs: 60
+				});
+			}
+		}
+		if (this.state.brkLength > 60 || this.state.brkLength < 1) {
+			if (this.state.brkLength > 60) {
+				this.setState({
+					brkLength: 60,
+					remainingSecs: 3600
+				});
+			} else {
+				this.setState({
+					brkLength: 1,
+					remainingSecs: 60
+				});
+			}
+		}
+
+		this.setState({
+			play_pause: !this.state.play_pause
+		});
+		if (!this.state.play_pause) {
+			this.countdown = setInterval(
+				(() => {
+					this.tick();
+				}).bind(this),
+				1000
+			);
+		} else {
+			clearInterval(this.countdown);
+		}
+	}
+
+	tick() {
+		if (this.state.remainingSecs > 0) {
+			this.setState({
+				remainingSecs: this.state.remainingSecs - 1
+			});
+		} else {
+			document.getElementById("beep").play();
+			if (this.state.crtInterval === "Session") {
+				this.setState({
+					crtInterval: "Break",
+					remainingSecs: this.state.brkLength * 60
+				});
+			} else {
+				this.setState({
+					crtInterval: "Session",
+					remainingSecs: this.state.sesLength * 60
+				});
+			}
+		}
+	}
+
+	render() {
+		return (
+			<div id="pmd-background">
+				<div id="title" className="text-white">
+					<h1>Pomodoro Clock</h1>
+				</div>
+				<div id="pomodoro" className="text-white">
+					<Controls
+						breakLength={this.break}
+						sessionLength={this.session}
+						clkHandler={this.handleClick}
+						changeHandler={this.handleChange}
+						updateValue={this.updateValue}
+						playPauseToggle={this.togglePlay}
+						playPause={this.state.play_pause}
+					/>
+					<Display
+						currentInterval={this.state.crtInterval}
+						totalSeconds={this.state.remainingSecs}
+					/>
+					<audio
+						id="beep"
+						src="https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Audio+Clips/Digital+alarm+clock+sound+effect+beeping+sounds.mp3"
+						type="audio/mp3"
+					/>
+				</div>
+				<div id="credits" className="text-white">
+					<h2 id="credits-line">
+						Coded and designed by{" "}
+						<a id="port-link" href="#" target="_blank">
+							Raul F.
+						</a>
+					</h2>
+				</div>
+			</div>
+		);
+	}
+}
+
+const Controls = props => {
+	return (
+		<div id="control-box">
+			<div id="break-box" className="settings-box">
+				<h2 id="break-label">Break Length</h2>
+				<div id="break-tools" className="tool-box">
+					<button
+						id="break-increment"
+						onClick={props.clkHandler}
+						className="invisibutton"
+					>
+						<i className="fas fa-chevron-up" />
+					</button>
+					<input
+						id="break-length"
+						type="number"
+						value={props.breakLength}
+						max="60"
+						min="1"
+						onBlur={props.updateValue}
+						onChange={props.changeHandler}
+						className="settings-input"
+					/>
+					<button
+						id="break-decrement"
+						onClick={props.clkHandler}
+						className="invisibutton"
+					>
+						<i className="fas fa-chevron-down" />
+					</button>
+				</div>
+			</div>
+			<div id="session-box" className="settings-box">
+				<h2 id="session-label">Session Length</h2>
+				<div id="session-tools" className="tool-box">
+					<button
+						id="session-increment"
+						onClick={props.clkHandler}
+						className="invisibutton"
+					>
+						<i className="fas fa-chevron-up" />
+					</button>
+					<input
+						id="session-length"
+						type="number"
+						value={props.sessionLength}
+						max="60"
+						min="1"
+						onBlur={props.updateValue}
+						onChange={props.changeHandler}
+						className="settings-input"
+					/>
+					<button
+						id="session-decrement"
+						onClick={props.clkHandler}
+						className="invisibutton"
+					>
+						<i className="fas fa-chevron-down" />
+					</button>
+				</div>
+			</div>
+			<div id="flow-controls" className="tool-box">
+				<button
+					id="start_stop"
+					onClick={props.playPauseToggle}
+					className="invisibutton"
+				>
+					{props.playPause ? (
+						<i className="fas fa-pause" />
+					) : (
+						<i className="fas fa-play" />
+					)}
+				</button>
+				<button id="reset" onClick={props.clkHandler} className="invisibutton">
+					<i className="fas fa-undo-alt" />
+				</button>
+			</div>
+		</div>
+	);
+};
+
+const Display = props => {
+	return (
+		<div id="display">
+			<h2 id="timer-label">{props.currentInterval}</h2>
+			<Clock seconds={props.totalSeconds} />
+		</div>
+	);
+};
+
+const Clock = props => {
+	let timerStyle;
+	let seconds = props.seconds % 60;
+	let minutes = (props.seconds - props.seconds % 60) / 60;
+	if (minutes < 10) {
+		minutes = "0" + minutes;
+	}
+	if (minutes === "00" && seconds <= 10) {
+		timerStyle = "text-danger";
+	} else {
+		timerStyle = "text-white";
+	}
+	if (seconds < 10) {
+		seconds = "0" + seconds;
+	}
+	return (
+		<div id="clock-box">
+			<h2 id="time-left" className={timerStyle}>
+				{minutes + ":" + seconds}
+			</h2>
+		</div>
+	);
+};
+
+ReactDOM.render(<PmdClock />, document.getElementById("root"));

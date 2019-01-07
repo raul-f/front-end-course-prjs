@@ -1,0 +1,109 @@
+body {
+  min-height: 100vh;
+}
+
+main {
+  min-height: inherit;
+  background: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/design-tools.jpg);
+}
+
+#preview {
+  padding: 5px;
+}
+#preview h1 {
+  border-bottom: solid;
+}
+#preview h2 {
+  border-bottom: 2px solid;
+}
+#preview table {
+  border: 1px solid;
+}
+#preview table th,
+#preview table td {
+  border: 1px solid;
+}
+#preview blockquote {
+  border-left: 3px solid;
+  padding-left: 5px;
+  position: relative;
+  left: 25px;
+}
+#preview code {
+  background: lightgray;
+}
+#preview pre {
+  background: lightgray;
+  display: block;
+  margin: 0;
+}
+
+i {
+  pointer-events: none;
+}
+
+.icon-btn {
+  background-color: transparent;
+  outline: none !important;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-btn:hover i {
+  color: #868e96;
+}
+
+#app-frame {
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#editor-parent {
+  border: 1px solid;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  width: 594px;
+}
+
+#editor-header {
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 7px 0 15px;
+}
+
+#editor {
+  border: none;
+  border-top: 1px solid;
+  resize: none;
+  height: 100% !important;
+  outline: none;
+}
+
+#preview-frame {
+  margin: 20px;
+  border: 1px solid;
+  height: 1188px;
+  width: 840px;
+}
+
+#preview-header {
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 7px 0 15px;
+}
+
+#preview {
+  background-color: white;
+  border-top: 1px solid;
+  height: 95%;
+  overflow: scroll;
+}

@@ -1,0 +1,106 @@
+body {
+    font-family: Rubik, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+        "nav main"
+        "nav main";
+    grid-template-columns: 320px 1fr;
+}
+
+nav {
+    background: url("https://drive.google.com/uc?export=download&id=1NTzuF3TigYz0Nz76WcLu3HtG7k_X9b8E");
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    grid-area: nav;
+    border-style: hidden solid hidden hidden;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    grid-area: main;
+}
+
+code {
+    background-color: lightgray;
+}
+
+.code-li {
+    list-style: none;
+}
+
+.code-snippet {
+    border-style: solid;
+    border-radius: 5px;
+    background-color: lightgray;
+    padding: 5px;
+    width: auto;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+    border-style: hidden hidden solid hidden;
+    width: 98%;
+}
+
+#link-container {
+    width: 100%;
+    grid-area: link-container;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#link-1 {
+    border-style: solid hidden solid hidden;
+}
+
+@media (max-width: 800px) {
+    body {
+        font-family: Rubik, sans-serif;
+        border-style: hidden;
+        margin: 0;
+        padding: 0;
+        min-width: 100vw;
+        min-height: 100vh;
+        display: grid;
+        grid-template-areas:
+            "nav"
+            "main";
+        grid-template-rows: 320px 1fr;
+    }
+
+    nav {
+        width: 100vw;
+        position: relative;
+        display: grid;
+        grid-template-areas:
+            "header"
+            "link-container";
+        grid-template-rows: 60px 250px;
+        grid-template-columns: 100vw;
+        border-style: hidden hidden solid hidden;
+    }
+
+    main {
+        width: 100vw;
+    }
+
+    #link-container {
+        grid-area: link-container;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: scroll;
+        max-height: 250px;
+    }
+}

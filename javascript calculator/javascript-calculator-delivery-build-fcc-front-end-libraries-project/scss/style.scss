@@ -1,0 +1,147 @@
+$calc-height: 550px;
+$calc-width: 0.75 * $calc-height;
+$display-bigger-font-size: 55px;
+$display-smaller-font-size: 25px;
+
+body {
+	margin: 0;
+	/*border: 2px solid blue;*/
+	min-height: 100vh;
+	font-family: Economica;
+}
+
+.fas {
+	pointer-events: none;
+}
+
+.patience {
+	display: none;
+}
+
+.btn-row {
+	height: 0.16 * $calc-height - 1.125px;
+}
+
+.calc-btn {
+	border: 1px solid black;
+	border-radius: 0;
+	box-shadow: none !important;
+}
+
+.non-icon {
+	font-size: 30px;
+}
+
+#root {
+	/*border: 2px solid red;*/
+	min-height: inherit;
+}
+
+#calc-bg {
+	/*border: 2px solid orange;*/
+	background: url(https://s3-sa-east-1.amazonaws.com/myhostedfiles.raulf/Images/design+patterns/Math-pattern-operators.png);
+	min-height: inherit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#calc-body {
+	border: 3px solid;
+	border-radius: 5px;
+	height: $calc-height;
+	width: $calc-width;
+}
+
+#outer-display {
+	background-color: white;
+	border-radius: 3px 3px 0 0;
+	height: 0.2 * $calc-height;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+#display {
+	font-size: $display-bigger-font-size;
+	margin: 0 7px 0 0;
+	height: $display-bigger-font-size + 15px;
+}
+
+#secondary-display {
+	font-size: $display-smaller-font-size;
+	margin: 0 7px 0 0;
+	height: $display-smaller-font-size + 15px;
+	overflow: auto;
+}
+
+#display-calculation {
+	font-size: $display-smaller-font-size;
+	padding: 0;
+	margin: 0;
+}
+
+#upper-buttons {
+	border-style: solid hidden hidden hidden;
+	border-width: 3px;
+}
+
+#digits-operators {
+	background-color: black;
+	height: 0.8 * $calc-height - 5px;
+}
+
+#lower-digits {
+	padding: 0;
+}
+
+#zero {
+	border-radius: 0 0 0 2px;
+}
+
+#equals {
+	border-radius: 0 0 2px 0;
+}
+
+@media screen and (max-width: 850px) {
+	$calc-height: 400px;
+	$calc-width: 0.75 * $calc-height;
+	$display-bigger-font-size: 40px;
+	$display-smaller-font-size: 15px;
+
+	.btn-row {
+		height: 0.16 * $calc-height - 1.125px;
+	}
+
+	.non-icon {
+		font-size: 20px;
+	}
+
+	#calc-body {
+		height: $calc-height;
+		width: $calc-width;
+	}
+
+	#outer-display {
+		height: 0.2 * $calc-height;
+	}
+
+	#display {
+		font-size: $display-bigger-font-size;
+		height: $display-bigger-font-size + 15px;
+	}
+
+	#secondary-display {
+		font-size: $display-smaller-font-size;
+		height: $display-smaller-font-size + 15px;
+	}
+
+	#display-calculation {
+		font-size: $display-smaller-font-size;
+	}
+
+	#digits-operators {
+		height: 0.8 * $calc-height - 5px;
+	}
+}
